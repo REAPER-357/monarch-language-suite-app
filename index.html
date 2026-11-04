@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-CA" data-theme="black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Monarch Language Suite</title>
+
+    <!-- PWA & theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Offline dictionary, thesaurus, idioms and grammar basics with Canadian, US and UK spelling.">
+    <link rel="icon" type="image/png" href="small-icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/monarch.css">
+</head>
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="app-header">
+        <div class="brand">
+            <img src="small-icon.png" alt="Monarch logo">
+            <div>
+                <h1 id="appTitle">MONARCH</h1>
+                <p>Language Suite</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button id="dialectPill" class="pill" aria-label="Change English variant" title="Tap to switch Canadian / US / UK English">CA</button>
+            <button id="openSettings" class="icon-btn" aria-label="Open settings"><span class="ic" data-ic="settings"></span></button>
+        </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="app-nav" aria-label="Sections">
+        <div class="nav-inner" id="navTabs">
+            <button class="tab-btn active" data-tab="dictionary"><span class="ic" data-ic="book-open"></span><span>Dictionary</span></button>
+            <button class="tab-btn" data-tab="thesaurus"><span class="ic" data-ic="arrow-right-left"></span><span>Thesaurus</span></button>
+            <button class="tab-btn" data-tab="forms"><span class="ic" data-ic="quote"></span><span>Special Forms</span></button>
+            <button class="tab-btn" data-tab="basics"><span class="ic" data-ic="graduation-cap"></span><span>Basics</span></button>
+        </div>
+    </nav>
+
+    <div id="toast" hidden></div>
+
+    <main>
+        <!-- TAB 1: DICTIONARY -->
+        <section id="view-dictionary" class="tab-view stack">
+            <label class="search">
+                <span class="ic" data-ic="search"></span>
+                <input id="dictInput" type="search" inputmode="search" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
+                       placeholder="Type a word… (use ? and * as wildcards)" aria-label="Search the dictionary">
+                <button class="clear" id="dictClear" aria-label="Clear search" hidden><span class="ic" data-ic="x"></span></button>
+            </label>
+            <div id="dictHome" class="stack"></div>
+            <div id="dictResults" class="list" hidden></div>
+        </section>
+
+        <!-- TAB 2: THESAURUS -->
+        <section id="view-thesaurus" class="tab-view stack" hidden>
+            <label class="search">
+                <span class="ic" data-ic="search"></span>
+                <input id="thesInput" type="search" inputmode="search" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
+                       placeholder="Find synonyms and antonyms…" aria-label="Search the thesaurus">
+                <button class="clear" id="thesClear" aria-label="Clear search" hidden><span class="ic" data-ic="x"></span></button>
+            </label>
+            <div id="thesHome" class="stack"></div>
+            <div id="thesResults" class="list" hidden></div>
+        </section>
+
+        <!-- TAB 3: SPECIAL FORMS -->
+        <section id="view-forms" class="tab-view stack" hidden>
+            <div class="chips" id="formTypes" role="tablist" aria-label="Type of expression"></div>
+            <label class="search">
+                <span class="ic" data-ic="search"></span>
+                <input id="formsInput" type="search" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
+                       placeholder="Search expressions…" aria-label="Search special forms">
+                <button class="clear" id="formsClear" aria-label="Clear search" hidden><span class="ic" data-ic="x"></span></button>
+            </label>
+            <p id="formsCount" class="hint"></p>
+            <div id="formsList" class="list"></div>
+        </section>
+
+        <!-- TAB 4: BASICS -->
+        <section id="view-basics" class="tab-view stack" hidden>
+            <div id="basicsMenu" class="list"></div>
+        </section>
+
+        <!-- DETAIL VIEW (entries, thesaurus pages, basics lessons) -->
+        <section id="detailView" class="stack" hidden>
+            <div class="detail-top">
+                <button id="detailBack" class="back"><span class="ic" data-ic="arrow-left"></span><span>Back</span></button>
+                <div id="detailActions" class="chips"></div>
+            </div>
+            <div id="detailBody" class="stack"></div>
+        </section>
+    </main>
+
+    <div class="signature"><p>Made by REAPER-357</p></div>
+
+    <!-- SETTINGS -->
+    <div id="settingsModal" class="modal" hidden>
+        <div class="modal-card stack" role="dialog" aria-modal="true" aria-label="Settings">
+            <button class="icon-btn modal-close" data-close aria-label="Close"><span class="ic" data-ic="x"></span></button>
+            <img src="icon.png" alt="" class="settings-logo">
+            <div style="text-align:center">
+                <h2 style="font-size:1rem">Monarch Language Suite</h2>
+                <p class="muted" id="packInfo"></p>
+            </div>
+
+            <div class="set-block">
+                <div class="label">English variant</div>
+                <div class="seg" id="setDialect">
+                    <button data-v="ca">Canadian</button><button data-v="us">American</button><button data-v="uk">British</button>
+                </div>
+                <p class="hint" style="margin-top:.5rem">Changes spelling everywhere (colour / color, centre / center, organize / organise). Search accepts any spelling.</p>
+            </div>
+
+            <div class="set-block">
+                <div class="label">Background theme</div>
+                <div class="seg" id="setTheme">
+                    <button data-v="black">Pure Black</button><button data-v="dark">Dark</button><button data-v="light">Light</button>
+                </div>
+            </div>
+
+            <div class="set-block">
+                <div class="label">Accent colour</div>
+                <div class="swatches" id="setAccent"></div>
+            </div>
+
+            <div class="set-block">
+                <div class="label">Text size</div>
+                <div class="seg" id="setSize">
+                    <button data-v="14">Small</button><button data-v="16">Medium</button><button data-v="18">Large</button>
+                </div>
+            </div>
+
+            <div class="set-block stack-sm">
+                <div class="row-between"><span>Show pronunciation (IPA)</span><label class="switch"><input type="checkbox" id="setIpa"><span></span></label></div>
+                <div class="row-between"><span>Show etymology</span><label class="switch"><input type="checkbox" id="setEty"><span></span></label></div>
+            </div>
+
+            <div class="set-block stack-sm" id="offlineBlock">
+                <div class="label">Offline use</div>
+                <p class="hint" id="offlineStatus"></p>
+                <div class="progress" id="offlineBar" hidden><div></div></div>
+                <button class="btn accent-bg" id="btnOffline"><span class="ic" data-ic="download"></span><span>Download everything for offline use</span></button>
+                <button class="btn" id="btnInstall" hidden><span class="ic" data-ic="download"></span><span>Install app</span></button>
+            </div>
+
+            <div class="set-block stack-sm">
+                <div class="label">Your data</div>
+                <div class="row-between"><span class="muted"><span id="favCount">0</span> favourites · <span id="histCount">0</span> recent</span></div>
+                <div class="chips">
+                    <button class="btn small" id="btnClearHistory"><span class="ic" data-ic="history"></span><span>Clear recent</span></button>
+                    <button class="btn small" id="btnClearFavs"><span class="ic" data-ic="trash-2"></span><span>Clear favourites</span></button>
+                </div>
+            </div>
+
+            <div class="set-block">
+                <div class="label">Sources &amp; licences</div>
+                <div id="attributions" class="hint" style="line-height:1.55"></div>
+            </div>
+
+            <p class="hint" style="text-align:center">Designed by REAPER-357 · Works fully offline</p>
+        </div>
+    </div>
+
+    <script src="js/engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
