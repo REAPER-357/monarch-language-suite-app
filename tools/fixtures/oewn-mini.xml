@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LexicalResource xmlns:dc="https://globalwordnet.github.io/schemas/dc/">
+  <Lexicon id="oewn" label="Open English Wordnet" language="en" email="x@example.org" license="https://creativecommons.org/licenses/by/4.0/" version="2024" url="https://en-word.net/">
+    <LexicalEntry id="oewn-happy-a">
+      <Lemma writtenForm="happy" partOfSpeech="a"/>
+      <Sense id="oewn-happy__3.00.00.." n="1" synset="oewn-01-a">
+        <SenseRelation relType="antonym" target="oewn-unhappy__3.00.00.."/>
+      </Sense>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-glad-a">
+      <Lemma writtenForm="glad" partOfSpeech="a"/>
+      <Sense id="oewn-glad__3.00.00.." n="1" synset="oewn-01-a"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-unhappy-a">
+      <Lemma writtenForm="unhappy" partOfSpeech="a"/>
+      <Sense id="oewn-unhappy__3.00.00.." n="1" synset="oewn-02-a">
+        <SenseRelation relType="antonym" target="oewn-happy__3.00.00.."/>
+      </Sense>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-color-n">
+      <Lemma writtenForm="color" partOfSpeech="n"/>
+      <Sense id="oewn-color__1.00.00.." n="1" synset="oewn-03-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-colour-n">
+      <Lemma writtenForm="colour" partOfSpeech="n"/>
+      <Sense id="oewn-colour__1.00.00.." n="1" synset="oewn-03-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-hue-n">
+      <Lemma writtenForm="hue" partOfSpeech="n"/>
+      <Sense id="oewn-hue__1.00.00.." n="1" synset="oewn-03-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-organize-v">
+      <Lemma writtenForm="organize" partOfSpeech="v"/>
+      <Sense id="oewn-organize__2.00.00.." n="1" synset="oewn-04-v"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-organise-v">
+      <Lemma writtenForm="organise" partOfSpeech="v"/>
+      <Sense id="oewn-organise__2.00.00.." n="1" synset="oewn-04-v"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-ice_cream-n">
+      <Lemma writtenForm="ice_cream" partOfSpeech="n"/>
+      <Sense id="oewn-ice_cream__1.00.00.." n="1" synset="oewn-05-n"/>
+    </LexicalEntry>
+    <LexicalEntry id="oewn-nodef-n">
+      <Lemma writtenForm="nodef" partOfSpeech="n"/>
+      <Sense id="oewn-nodef__1.00.00.." n="1" synset="oewn-missing-n"/>
+    </LexicalEntry>
+    <Synset id="oewn-01-a" ili="i1" partOfSpeech="a" dc:subject="adj.all" members="oewn-happy-a oewn-glad-a">
+      <Definition>enjoying or showing pleasure</Definition>
+      <Example>a happy smile</Example>
+    </Synset>
+    <Synset id="oewn-02-a" ili="i2" partOfSpeech="a" dc:subject="adj.all" members="oewn-unhappy-a">
+      <Definition>not happy; sad</Definition>
+    </Synset>
+    <Synset id="oewn-03-n" ili="i3" partOfSpeech="n" dc:subject="noun.attribute" members="oewn-color-n oewn-colour-n oewn-hue-n">
+      <Definition>the visual appearance of things as determined by the light they reflect</Definition>
+      <Example>a bright colour</Example>
+      <SynsetRelation relType="hypernym" target="oewn-99-n"/>
+    </Synset>
+    <Synset id="oewn-04-v" ili="i4" partOfSpeech="v" dc:subject="verb.social" members="oewn-organize-v oewn-organise-v">
+      <Definition>to arrange in an orderly way</Definition>
+    </Synset>
+    <Synset id="oewn-05-n" ili="i5" partOfSpeech="n" dc:subject="noun.food" members="oewn-ice_cream-n">
+      <Definition>a frozen dessert made from cream, sugar and flavouring</Definition>
+    </Synset>
+  </Lexicon>
+</LexicalResource>

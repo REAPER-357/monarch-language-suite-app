@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LexicalResource>
+<Lexicon id="oewn-sample" label="Sample" language="en" email="x@example.com" license="test" version="sample" url="">
+<LexicalEntry id="e-color-n">
+<Lemma writtenForm="color" partOfSpeech="n"/>
+<Sense id="color-color1" synset="color1">
+</Sense>
+<Sense id="color-color2" synset="color2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-colour-n">
+<Lemma writtenForm="colour" partOfSpeech="n"/>
+<Sense id="colour-color1" synset="color1">
+</Sense>
+<Sense id="colour-color2" synset="color2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-coloring-n">
+<Lemma writtenForm="coloring" partOfSpeech="n"/>
+<Sense id="coloring-color2" synset="color2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-colouring-n">
+<Lemma writtenForm="colouring" partOfSpeech="n"/>
+<Sense id="colouring-color2" synset="color2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-color-v">
+<Lemma writtenForm="color" partOfSpeech="v"/>
+<Sense id="color-color3" synset="color3">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-colour-v">
+<Lemma writtenForm="colour" partOfSpeech="v"/>
+<Sense id="colour-color3" synset="color3">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-attribute-n">
+<Lemma writtenForm="attribute" partOfSpeech="n"/>
+<Sense id="attribute-attr1" synset="attr1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-property-n">
+<Lemma writtenForm="property" partOfSpeech="n"/>
+<Sense id="property-attr1" synset="attr1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-red-n">
+<Lemma writtenForm="red" partOfSpeech="n"/>
+<Sense id="red-red1" synset="red1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-redness-n">
+<Lemma writtenForm="redness" partOfSpeech="n"/>
+<Sense id="redness-red1" synset="red1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-blue-n">
+<Lemma writtenForm="blue" partOfSpeech="n"/>
+<Sense id="blue-blue1" synset="blue1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-blueness-n">
+<Lemma writtenForm="blueness" partOfSpeech="n"/>
+<Sense id="blueness-blue1" synset="blue1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-center-n">
+<Lemma writtenForm="center" partOfSpeech="n"/>
+<Sense id="center-center1" synset="center1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-centre-n">
+<Lemma writtenForm="centre" partOfSpeech="n"/>
+<Sense id="centre-center1" synset="center1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-middle-n">
+<Lemma writtenForm="middle" partOfSpeech="n"/>
+<Sense id="middle-center1" synset="center1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-midpoint-n">
+<Lemma writtenForm="midpoint" partOfSpeech="n"/>
+<Sense id="midpoint-center1" synset="center1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-theater-n">
+<Lemma writtenForm="theater" partOfSpeech="n"/>
+<Sense id="theater-theater1" synset="theater1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-theatre-n">
+<Lemma writtenForm="theatre" partOfSpeech="n"/>
+<Sense id="theatre-theater1" synset="theater1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-behavior-n">
+<Lemma writtenForm="behavior" partOfSpeech="n"/>
+<Sense id="behavior-behavior1" synset="behavior1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-behaviour-n">
+<Lemma writtenForm="behaviour" partOfSpeech="n"/>
+<Sense id="behaviour-behavior1" synset="behavior1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-conduct-n">
+<Lemma writtenForm="conduct" partOfSpeech="n"/>
+<Sense id="conduct-behavior1" synset="behavior1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-defense-n">
+<Lemma writtenForm="defense" partOfSpeech="n"/>
+<Sense id="defense-defense1" synset="defense1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-defence-n">
+<Lemma writtenForm="defence" partOfSpeech="n"/>
+<Sense id="defence-defense1" synset="defense1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-defending-n">
+<Lemma writtenForm="defending" partOfSpeech="n"/>
+<Sense id="defending-defense1" synset="defense1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-gray-a">
+<Lemma writtenForm="gray" partOfSpeech="a"/>
+<Sense id="gray-gray1" synset="gray1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-grey-a">
+<Lemma writtenForm="grey" partOfSpeech="a"/>
+<Sense id="grey-gray1" synset="gray1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-catalog-n">
+<Lemma writtenForm="catalog" partOfSpeech="n"/>
+<Sense id="catalog-catalog1" synset="catalog1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-catalogue-n">
+<Lemma writtenForm="catalogue" partOfSpeech="n"/>
+<Sense id="catalogue-catalog1" synset="catalog1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-dog-n">
+<Lemma writtenForm="dog" partOfSpeech="n"/>
+<Sense id="dog-dog1" synset="dog1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-domestic dog-n">
+<Lemma writtenForm="domestic dog" partOfSpeech="n"/>
+<Sense id="domestic dog-dog1" synset="dog1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-canine-n">
+<Lemma writtenForm="canine" partOfSpeech="n"/>
+<Sense id="canine-canine1" synset="canine1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-canid-n">
+<Lemma writtenForm="canid" partOfSpeech="n"/>
+<Sense id="canid-canine1" synset="canine1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-retriever-n">
+<Lemma writtenForm="retriever" partOfSpeech="n"/>
+<Sense id="retriever-retriever1" synset="retriever1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-cat-n">
+<Lemma writtenForm="cat" partOfSpeech="n"/>
+<Sense id="cat-cat1" synset="cat1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-true cat-n">
+<Lemma writtenForm="true cat" partOfSpeech="n"/>
+<Sense id="true cat-cat1" synset="cat1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-feline-n">
+<Lemma writtenForm="feline" partOfSpeech="n"/>
+<Sense id="feline-feline1" synset="feline1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-felid-n">
+<Lemma writtenForm="felid" partOfSpeech="n"/>
+<Sense id="felid-feline1" synset="feline1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-house-n">
+<Lemma writtenForm="house" partOfSpeech="n"/>
+<Sense id="house-house1" synset="house1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-dwelling-n">
+<Lemma writtenForm="dwelling" partOfSpeech="n"/>
+<Sense id="dwelling-dwelling1" synset="dwelling1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-home-n">
+<Lemma writtenForm="home" partOfSpeech="n"/>
+<Sense id="home-dwelling1" synset="dwelling1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-domicile-n">
+<Lemma writtenForm="domicile" partOfSpeech="n"/>
+<Sense id="domicile-dwelling1" synset="dwelling1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-abode-n">
+<Lemma writtenForm="abode" partOfSpeech="n"/>
+<Sense id="abode-dwelling1" synset="dwelling1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-habitation-n">
+<Lemma writtenForm="habitation" partOfSpeech="n"/>
+<Sense id="habitation-dwelling1" synset="dwelling1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-cabin-n">
+<Lemma writtenForm="cabin" partOfSpeech="n"/>
+<Sense id="cabin-cabin1" synset="cabin1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-log cabin-n">
+<Lemma writtenForm="log cabin" partOfSpeech="n"/>
+<Sense id="log cabin-cabin1" synset="cabin1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-love-n">
+<Lemma writtenForm="love" partOfSpeech="n"/>
+<Sense id="love-love1" synset="love1">
+<SenseRelation relType="antonym" target="hate-hate1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-hate-n">
+<Lemma writtenForm="hate" partOfSpeech="n"/>
+<Sense id="hate-hate1" synset="hate1">
+<SenseRelation relType="antonym" target="love-love1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-hatred-n">
+<Lemma writtenForm="hatred" partOfSpeech="n"/>
+<Sense id="hatred-hate1" synset="hate1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-love-v">
+<Lemma writtenForm="love" partOfSpeech="v"/>
+<Sense id="love-love2" synset="love2">
+<SenseRelation relType="antonym" target="hate-hate2"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-hate-v">
+<Lemma writtenForm="hate" partOfSpeech="v"/>
+<Sense id="hate-hate2" synset="hate2">
+<SenseRelation relType="antonym" target="love-love2"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-time-n">
+<Lemma writtenForm="time" partOfSpeech="n"/>
+<Sense id="time-time1" synset="time1">
+</Sense>
+<Sense id="time-time2" synset="time2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-book-n">
+<Lemma writtenForm="book" partOfSpeech="n"/>
+<Sense id="book-book1" synset="book1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-volume-n">
+<Lemma writtenForm="volume" partOfSpeech="n"/>
+<Sense id="volume-book1" synset="book1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-water-n">
+<Lemma writtenForm="water" partOfSpeech="n"/>
+<Sense id="water-water1" synset="water1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-H2O-n">
+<Lemma writtenForm="H2O" partOfSpeech="n"/>
+<Sense id="H2O-water1" synset="water1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-fire-n">
+<Lemma writtenForm="fire" partOfSpeech="n"/>
+<Sense id="fire-fire1" synset="fire1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-light-n">
+<Lemma writtenForm="light" partOfSpeech="n"/>
+<Sense id="light-light1" synset="light1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-visible light-n">
+<Lemma writtenForm="visible light" partOfSpeech="n"/>
+<Sense id="visible light-light1" synset="light1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-visible radiation-n">
+<Lemma writtenForm="visible radiation" partOfSpeech="n"/>
+<Sense id="visible radiation-light1" synset="light1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-run-v">
+<Lemma writtenForm="run" partOfSpeech="v"/>
+<Sense id="run-run1" synset="run1">
+</Sense>
+<Sense id="run-run2" synset="run2">
+</Sense>
+<Sense id="run-run3" synset="run3">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-operate-v">
+<Lemma writtenForm="operate" partOfSpeech="v"/>
+<Sense id="operate-run2" synset="run2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-flow-v">
+<Lemma writtenForm="flow" partOfSpeech="v"/>
+<Sense id="flow-run3" synset="run3">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-run-n">
+<Lemma writtenForm="run" partOfSpeech="n"/>
+<Sense id="run-run4" synset="run4">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-walk-v">
+<Lemma writtenForm="walk" partOfSpeech="v"/>
+<Sense id="walk-walk1" synset="walk1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-walk-n">
+<Lemma writtenForm="walk" partOfSpeech="n"/>
+<Sense id="walk-walk2" synset="walk2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-walking-n">
+<Lemma writtenForm="walking" partOfSpeech="n"/>
+<Sense id="walking-walk2" synset="walk2">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-organize-v">
+<Lemma writtenForm="organize" partOfSpeech="v"/>
+<Sense id="organize-organize1" synset="organize1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-organise-v">
+<Lemma writtenForm="organise" partOfSpeech="v"/>
+<Sense id="organise-organize1" synset="organize1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-analyze-v">
+<Lemma writtenForm="analyze" partOfSpeech="v"/>
+<Sense id="analyze-analyze1" synset="analyze1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-analyse-v">
+<Lemma writtenForm="analyse" partOfSpeech="v"/>
+<Sense id="analyse-analyze1" synset="analyze1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-break down-v">
+<Lemma writtenForm="break down" partOfSpeech="v"/>
+<Sense id="break down-analyze1" synset="analyze1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-dissect-v">
+<Lemma writtenForm="dissect" partOfSpeech="v"/>
+<Sense id="dissect-analyze1" synset="analyze1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-take apart-v">
+<Lemma writtenForm="take apart" partOfSpeech="v"/>
+<Sense id="take apart-analyze1" synset="analyze1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-travel-v">
+<Lemma writtenForm="travel" partOfSpeech="v"/>
+<Sense id="travel-travel1" synset="travel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-go-v">
+<Lemma writtenForm="go" partOfSpeech="v"/>
+<Sense id="go-travel1" synset="travel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-move-v">
+<Lemma writtenForm="move" partOfSpeech="v"/>
+<Sense id="move-travel1" synset="travel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-locomote-v">
+<Lemma writtenForm="locomote" partOfSpeech="v"/>
+<Sense id="locomote-travel1" synset="travel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-cancel-v">
+<Lemma writtenForm="cancel" partOfSpeech="v"/>
+<Sense id="cancel-cancel1" synset="cancel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-call off-v">
+<Lemma writtenForm="call off" partOfSpeech="v"/>
+<Sense id="call off-cancel1" synset="cancel1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-fulfill-v">
+<Lemma writtenForm="fulfill" partOfSpeech="v"/>
+<Sense id="fulfill-fulfill1" synset="fulfill1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-fulfil-v">
+<Lemma writtenForm="fulfil" partOfSpeech="v"/>
+<Sense id="fulfil-fulfill1" synset="fulfill1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-happy-a">
+<Lemma writtenForm="happy" partOfSpeech="a"/>
+<Sense id="happy-happy1" synset="happy1">
+<SenseRelation relType="antonym" target="unhappy-unhappy1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-glad-a">
+<Lemma writtenForm="glad" partOfSpeech="a"/>
+<Sense id="glad-glad1" synset="glad1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-unhappy-a">
+<Lemma writtenForm="unhappy" partOfSpeech="a"/>
+<Sense id="unhappy-unhappy1" synset="unhappy1">
+<SenseRelation relType="antonym" target="happy-happy1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-big-a">
+<Lemma writtenForm="big" partOfSpeech="a"/>
+<Sense id="big-big1" synset="big1">
+<SenseRelation relType="antonym" target="small-small1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-large-a">
+<Lemma writtenForm="large" partOfSpeech="a"/>
+<Sense id="large-big1" synset="big1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-small-a">
+<Lemma writtenForm="small" partOfSpeech="a"/>
+<Sense id="small-small1" synset="small1">
+<SenseRelation relType="antonym" target="big-big1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-little-a">
+<Lemma writtenForm="little" partOfSpeech="a"/>
+<Sense id="little-small1" synset="small1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-fast-a">
+<Lemma writtenForm="fast" partOfSpeech="a"/>
+<Sense id="fast-fast1" synset="fast1">
+<SenseRelation relType="antonym" target="slow-slow1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-quick-a">
+<Lemma writtenForm="quick" partOfSpeech="a"/>
+<Sense id="quick-fast1" synset="fast1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-speedy-a">
+<Lemma writtenForm="speedy" partOfSpeech="a"/>
+<Sense id="speedy-fast1" synset="fast1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-swift-a">
+<Lemma writtenForm="swift" partOfSpeech="a"/>
+<Sense id="swift-fast1" synset="fast1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-slow-a">
+<Lemma writtenForm="slow" partOfSpeech="a"/>
+<Sense id="slow-slow1" synset="slow1">
+<SenseRelation relType="antonym" target="fast-fast1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-good-a">
+<Lemma writtenForm="good" partOfSpeech="a"/>
+<Sense id="good-good1" synset="good1">
+<SenseRelation relType="antonym" target="bad-bad1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-bad-a">
+<Lemma writtenForm="bad" partOfSpeech="a"/>
+<Sense id="bad-bad1" synset="bad1">
+<SenseRelation relType="antonym" target="good-good1"/>
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-beautiful-a">
+<Lemma writtenForm="beautiful" partOfSpeech="a"/>
+<Sense id="beautiful-beautiful1" synset="beautiful1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-lovely-a">
+<Lemma writtenForm="lovely" partOfSpeech="a"/>
+<Sense id="lovely-beautiful1" synset="beautiful1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-gorgeous-a">
+<Lemma writtenForm="gorgeous" partOfSpeech="a"/>
+<Sense id="gorgeous-beautiful1" synset="beautiful1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-honor-n">
+<Lemma writtenForm="honor" partOfSpeech="n"/>
+<Sense id="honor-honor1" synset="honor1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-honour-n">
+<Lemma writtenForm="honour" partOfSpeech="n"/>
+<Sense id="honour-honor1" synset="honor1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-neighbor-n">
+<Lemma writtenForm="neighbor" partOfSpeech="n"/>
+<Sense id="neighbor-neighbor1" synset="neighbor1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-neighbour-n">
+<Lemma writtenForm="neighbour" partOfSpeech="n"/>
+<Sense id="neighbour-neighbor1" synset="neighbor1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-favorite-a">
+<Lemma writtenForm="favorite" partOfSpeech="a"/>
+<Sense id="favorite-favorite1" synset="favorite1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-favourite-a">
+<Lemma writtenForm="favourite" partOfSpeech="a"/>
+<Sense id="favourite-favorite1" synset="favorite1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-jewelry-n">
+<Lemma writtenForm="jewelry" partOfSpeech="n"/>
+<Sense id="jewelry-jewelry1" synset="jewelry1">
+</Sense>
+</LexicalEntry>
+<LexicalEntry id="e-jewellery-n">
+<Lemma writtenForm="jewellery" partOfSpeech="n"/>
+<Sense id="jewellery-jewelry1" synset="jewelry1">
+</Sense>
+</LexicalEntry>
+<Synset id="color1" partOfSpeech="n">
+<Definition>a visual attribute of things that results from the light they emit or transmit or reflect</Definition>
+<Example>a white color</Example>
+<SynsetRelation relType="hypernym" target="attr1"/>
+<SynsetRelation relType="hyponym" target="red1"/>
+<SynsetRelation relType="hyponym" target="blue1"/>
+</Synset>
+<Synset id="color2" partOfSpeech="n">
+<Definition>a substance that gives its color to something</Definition>
+<Example>she used a red color for the walls</Example>
+</Synset>
+<Synset id="color3" partOfSpeech="v">
+<Definition>give a color to</Definition>
+<Example>The child colored the drawing with crayons</Example>
+</Synset>
+<Synset id="attr1" partOfSpeech="n">
+<Definition>an abstraction belonging to or characteristic of an entity</Definition>
+<SynsetRelation relType="hyponym" target="color1"/>
+</Synset>
+<Synset id="red1" partOfSpeech="n">
+<Definition>red color or pigment; the chromatic color resembling the hue of blood</Definition>
+<SynsetRelation relType="hypernym" target="color1"/>
+</Synset>
+<Synset id="blue1" partOfSpeech="n">
+<Definition>blue color or pigment; resembling the color of the clear sky in the daytime</Definition>
+<SynsetRelation relType="hypernym" target="color1"/>
+</Synset>
+<Synset id="center1" partOfSpeech="n">
+<Definition>an area that is approximately central within some larger region</Definition>
+<Example>it is in the center of town</Example>
+</Synset>
+<Synset id="theater1" partOfSpeech="n">
+<Definition>a building where theatrical performances or motion-picture shows can be presented</Definition>
+<Example>they saw a play at the theatre</Example>
+</Synset>
+<Synset id="behavior1" partOfSpeech="n">
+<Definition>manner of acting or conducting oneself</Definition>
+<Example>his bad behavior got him expelled</Example>
+</Synset>
+<Synset id="defense1" partOfSpeech="n">
+<Definition>the action of defending against attack</Definition>
+<Example>the defence of the city was heroic</Example>
+</Synset>
+<Synset id="gray1" partOfSpeech="a">
+<Definition>of an achromatic color of any lightness between the extremes of black and white</Definition>
+<Example>gray flannel suit</Example>
+</Synset>
+<Synset id="catalog1" partOfSpeech="n">
+<Definition>a complete list of things, usually arranged systematically with descriptive details</Definition>
+<Example>a catalog of the museum collection</Example>
+</Synset>
+<Synset id="dog1" partOfSpeech="n">
+<Definition>a member of the genus Canis that has been domesticated by man since prehistoric times</Definition>
+<Example>the dog barked all night</Example>
+<SynsetRelation relType="hypernym" target="canine1"/>
+<SynsetRelation relType="hyponym" target="retriever1"/>
+</Synset>
+<Synset id="canine1" partOfSpeech="n">
+<Definition>any of various fissiped mammals with nonretractile claws and typically long muzzles</Definition>
+<SynsetRelation relType="hyponym" target="dog1"/>
+</Synset>
+<Synset id="retriever1" partOfSpeech="n">
+<Definition>a breed of medium to large dogs used for retrieving game</Definition>
+<SynsetRelation relType="hypernym" target="dog1"/>
+</Synset>
+<Synset id="cat1" partOfSpeech="n">
+<Definition>feline mammal usually having thick soft fur and no ability to roar</Definition>
+<Example>the cat purred</Example>
+<SynsetRelation relType="hypernym" target="feline1"/>
+</Synset>
+<Synset id="feline1" partOfSpeech="n">
+<Definition>any of various lithe-bodied roundheaded fissiped mammals, many with retractile claws</Definition>
+<SynsetRelation relType="hyponym" target="cat1"/>
+</Synset>
+<Synset id="house1" partOfSpeech="n">
+<Definition>a dwelling that serves as living quarters for one or more families</Definition>
+<Example>he has a house on the lake</Example>
+<SynsetRelation relType="hypernym" target="dwelling1"/>
+<SynsetRelation relType="hyponym" target="cabin1"/>
+</Synset>
+<Synset id="dwelling1" partOfSpeech="n">
+<Definition>housing that someone is living in</Definition>
+<SynsetRelation relType="hyponym" target="house1"/>
+</Synset>
+<Synset id="cabin1" partOfSpeech="n">
+<Definition>a small house built of wood</Definition>
+<Example>a cabin in the woods</Example>
+<SynsetRelation relType="hypernym" target="house1"/>
+</Synset>
+<Synset id="love1" partOfSpeech="n">
+<Definition>a strong positive emotion of regard and affection</Definition>
+<Example>his love for his work</Example>
+<Example>children need a lot of love</Example>
+</Synset>
+<Synset id="hate1" partOfSpeech="n">
+<Definition>the emotion of intense dislike; a feeling of dislike so strong that it is difficult to control</Definition>
+</Synset>
+<Synset id="love2" partOfSpeech="v">
+<Definition>have a great affection or liking for</Definition>
+<Example>I love my parents</Example>
+<Example>She loves cooking</Example>
+</Synset>
+<Synset id="hate2" partOfSpeech="v">
+<Definition>dislike intensely; feel antipathy or aversion towards</Definition>
+<Example>I hate Mondays</Example>
+</Synset>
+<Synset id="time1" partOfSpeech="n">
+<Definition>an instance or single occasion for some event</Definition>
+<Example>this time he succeeded</Example>
+</Synset>
+<Synset id="time2" partOfSpeech="n">
+<Definition>the continuum of experience in which events pass from the future through the present to the past</Definition>
+<Example>time heals all wounds</Example>
+</Synset>
+<Synset id="book1" partOfSpeech="n">
+<Definition>a written work or composition that has been published (printed on pages bound together)</Definition>
+<Example>I am reading a book about Canadian history</Example>
+</Synset>
+<Synset id="water1" partOfSpeech="n">
+<Definition>a clear colorless odorless tasteless liquid essential for most plant and animal life</Definition>
+<Example>a glass of water</Example>
+</Synset>
+<Synset id="fire1" partOfSpeech="n">
+<Definition>the event of something burning (often destructive)</Definition>
+<Example>they lost everything in the fire</Example>
+</Synset>
+<Synset id="light1" partOfSpeech="n">
+<Definition>electromagnetic radiation that can produce a visual sensation</Definition>
+<Example>the light of the sun</Example>
+</Synset>
+<Synset id="run1" partOfSpeech="v">
+<Definition>move fast by using one's feet, with one foot off the ground at any given time</Definition>
+<Example>Don't run, you'll be out of breath</Example>
+</Synset>
+<Synset id="run2" partOfSpeech="v">
+<Definition>direct or control; projects, businesses, etc.</Definition>
+<Example>She runs a small bakery</Example>
+</Synset>
+<Synset id="run3" partOfSpeech="v">
+<Definition>move along, of liquids</Definition>
+<Example>The river runs through the valley</Example>
+</Synset>
+<Synset id="run4" partOfSpeech="n">
+<Definition>the act of running; traveling on foot at a fast pace</Definition>
+<Example>he broke into a run</Example>
+</Synset>
+<Synset id="walk1" partOfSpeech="v">
+<Definition>use one's feet to advance; advance by steps</Definition>
+<Example>Walk to the store</Example>
+</Synset>
+<Synset id="walk2" partOfSpeech="n">
+<Definition>the act of traveling by foot</Definition>
+<Example>we took a walk in the park</Example>
+</Synset>
+<Synset id="organize1" partOfSpeech="v">
+<Definition>arrange by systematic planning and united effort</Definition>
+<Example>organize a strike</Example>
+<Example>organize a conference</Example>
+</Synset>
+<Synset id="analyze1" partOfSpeech="v">
+<Definition>break down into components or essential features</Definition>
+<Example>analyze a chemical compound</Example>
+</Synset>
+<Synset id="travel1" partOfSpeech="v">
+<Definition>change location; move, travel, or proceed, also metaphorically</Definition>
+<Example>How fast does your new car go?</Example>
+</Synset>
+<Synset id="cancel1" partOfSpeech="v">
+<Definition>postpone indefinitely or annul something that was scheduled</Definition>
+<Example>The ball game was called off</Example>
+</Synset>
+<Synset id="fulfill1" partOfSpeech="v">
+<Definition>meet the requirements or expectations of</Definition>
+<Example>she fulfilled her promise</Example>
+</Synset>
+<Synset id="happy1" partOfSpeech="a">
+<Definition>enjoying or showing or marked by joy or pleasure</Definition>
+<Example>a happy smile</Example>
+<Example>spent many happy days on the beach</Example>
+<SynsetRelation relType="similar" target="glad1"/>
+</Synset>
+<Synset id="glad1" partOfSpeech="a">
+<Definition>showing or causing joy and pleasure; especially made happy</Definition>
+<Example>glad you are here</Example>
+</Synset>
+<Synset id="unhappy1" partOfSpeech="a">
+<Definition>experiencing or showing sorrow or unhappiness; sad</Definition>
+<Example>unhappy over the loss of his job</Example>
+</Synset>
+<Synset id="big1" partOfSpeech="a">
+<Definition>above average in size or number or quantity or magnitude or extent</Definition>
+<Example>a large city</Example>
+<Example>a big job</Example>
+</Synset>
+<Synset id="small1" partOfSpeech="a">
+<Definition>limited or below average in number or quantity or magnitude or extent</Definition>
+<Example>a small group</Example>
+<Example>a little house</Example>
+</Synset>
+<Synset id="fast1" partOfSpeech="a">
+<Definition>acting or moving or capable of acting or moving quickly</Definition>
+<Example>a fast car</Example>
+<Example>a quick reply</Example>
+</Synset>
+<Synset id="slow1" partOfSpeech="a">
+<Definition>not moving quickly; taking a comparatively long time</Definition>
+<Example>a slow walker</Example>
+</Synset>
+<Synset id="good1" partOfSpeech="a">
+<Definition>having desirable or positive qualities especially those suitable for a thing specified</Definition>
+<Example>good news from the hospital</Example>
+</Synset>
+<Synset id="bad1" partOfSpeech="a">
+<Definition>having undesirable or negative qualities</Definition>
+<Example>a bad report card</Example>
+</Synset>
+<Synset id="beautiful1" partOfSpeech="a">
+<Definition>delighting the senses or exciting intellectual or emotional admiration</Definition>
+<Example>a beautiful child</Example>
+<Example>beautiful music</Example>
+</Synset>
+<Synset id="honor1" partOfSpeech="n">
+<Definition>the state of being honored</Definition>
+<Example>it is a great honor to be here</Example>
+</Synset>
+<Synset id="neighbor1" partOfSpeech="n">
+<Definition>a person who lives (or is located) near another</Definition>
+<Example>my next-door neighbor</Example>
+</Synset>
+<Synset id="favorite1" partOfSpeech="a">
+<Definition>preferred above all others and treated with partiality</Definition>
+<Example>her favorite book</Example>
+</Synset>
+<Synset id="jewelry1" partOfSpeech="n">
+<Definition>an ornamental item worn for personal adornment</Definition>
+<Example>she wore a lot of jewelry</Example>
+</Synset>
+</Lexicon>
+</LexicalResource>

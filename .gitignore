@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build outputs & web targets
+dist/
+build/
+
+# Android / Capacitor native build & local properties
+android/app/build/
+android/.gradle/
+android/local.properties
+android/.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.log

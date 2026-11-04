@@ -1,0 +1,9 @@
+{"word": "happy", "lang_code": "en", "pos": "adj", "sounds": [{"ipa": "/ˈhæpi/", "tags": ["US"]}, {"ipa": "/ˈhapi/", "tags": ["UK"]}], "etymology_text": "From Middle English hap (luck) + -y.", "senses": [{"glosses": ["Feeling pleasure."], "examples": [{"text": "I'm happy to help."}]}]}
+{"word": "color", "lang_code": "en", "pos": "noun", "sounds": [{"ipa": "/ˈkʌlɚ/", "tags": ["General-American"]}], "senses": [{"glosses": ["A visual property."]}]}
+{"word": "colors", "lang_code": "en", "pos": "noun", "senses": [{"glosses": ["plural of color"], "tags": ["form-of"], "form_of": [{"word": "color"}]}]}
+{"word": "break the ice", "lang_code": "en", "pos": "verb", "categories": [{"name": "English idioms"}], "senses": [{"glosses": ["To do or say something to relieve tension at a first meeting."], "examples": [{"text": "He told a joke to break the ice."}]}]}
+{"word": "give up", "lang_code": "en", "pos": "verb", "categories": [{"name": "English phrasal verbs"}], "senses": [{"glosses": ["To stop trying."], "examples": [{"text": "Don't give up!"}]}]}
+{"word": "A stitch in time saves nine.", "lang_code": "en", "pos": "proverb", "senses": [{"glosses": ["Fixing a small problem early prevents a bigger one."]}]}
+{"word": "toque", "lang_code": "en", "pos": "noun", "sounds": [{"ipa": "/tuːk/"}], "senses": [{"glosses": ["A warm knitted winter hat, especially in Canada."], "examples": [{"text": "Wear a toque, it's cold."}]}]}
+{"word": "Paris", "lang_code": "en", "pos": "name", "senses": [{"glosses": ["The capital of France."]}]}
+{"word": "bonjour", "lang_code": "fr", "lang": "French", "pos": "intj", "senses": [{"glosses": ["hello"]}]}
