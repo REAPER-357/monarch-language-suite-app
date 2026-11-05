@@ -11,7 +11,10 @@ android/.gradle/
 android/local.properties
 android/.idea/
 
-# OS generated files
+# OS generated files & temporary editor lock/backup files
 .DS_Store
 Thumbs.db
 *.log
+.*#
+*~
+.#*
