@@ -1,0 +1,5 @@
+happy	1c3
+hat	2p3
+honor	1n3
+hous	d3,1w3,03,103,113,1i3,1m3
+hue	2c2,2d2,o1

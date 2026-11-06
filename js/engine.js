@@ -45,6 +45,84 @@
         };
     }
 
+
+    /* ---------- Search by meaning (reverse lookup) ---------- */
+    // Must match tools/packlib.py (STOP, stem_token, rev_terms); tests/reverse.test.js checks they agree.
+    var STOP = {};
+    ('a an the of to in for or and with who whom whose which that this these those is are was were be been being ' +
+     'by on as at from it its not no into than then there their they them he she his her we you your but if so such ' +
+     'one ones something someone somebody anything thing things used use using usually often especially esp ' +
+     'having have has had do does done can may might will would very more most any some each other another ' +
+     'informal slang archaic obsolete dated rare uncommon historical figuratively figurative transitive intransitive ' +
+     'also about between during over under up out off through').split(' ').forEach(function (w) { if (w) STOP[w] = 1; });
+
+    function endsWithAny(t, list) {
+        for (var i = 0; i < list.length; i++) if (t.slice(-list[i].length) === list[i]) return true;
+        return false;
+    }
+    function undouble(t) {
+        var n = t.length;
+        return (n >= 3 && t[n - 1] === t[n - 2] && 'bgmnprt'.indexOf(t[n - 1]) >= 0) ? t.slice(0, -1) : t;
+    }
+    function stemToken(t) {
+        var n = t.length;
+        if (n <= 3) return t;
+        if ((/ies$/.test(t) || /ied$/.test(t)) && n > 4) return t.slice(0, -3) + 'y';
+        if (/ing$/.test(t) && n > 5) t = undouble(t.slice(0, -3));
+        else if (/ed$/.test(t) && n > 4) t = undouble(t.slice(0, -2));
+        else if (/es$/.test(t) && n > 4 && endsWithAny(t.slice(0, -2), ['s', 'x', 'z', 'ch', 'sh'])) t = t.slice(0, -2);
+        else if (/s$/.test(t) && !endsWithAny(t, ['ss', 'us', 'is'])) t = t.slice(0, -1);
+        if (t.length > 3 && /e$/.test(t)) t = t.slice(0, -1);
+        return t;
+    }
+    // Stemmed, de-duplicated search terms of what the person typed (spelling variants mapped to the stored spelling).
+    function queryTerms(text, spelling) {
+        var toks = String(text || '').toLowerCase().match(/[a-z]+/g) || [], out = [], seen = {};
+        toks.forEach(function (t) {
+            if (t.length < 3 || STOP[t]) return;
+            if (spelling) t = spelling.canonical(t);
+            var st = stemToken(t);
+            if (!seen[st]) { seen[st] = 1; out.push(st); }
+        });
+        return out;
+    }
+    // rev/<letter>.txt: "stem<TAB>id36+weight,id36+weight,..." -> { stem: "id36w,id36w" }
+    function parseRevFile(txt) {
+        var m = Object.create(null), lines = String(txt || '').split('\n');
+        for (var i = 0; i < lines.length; i++) {
+            var p = lines[i].indexOf('\t');
+            if (p > 0) m[lines[i].slice(0, p)] = lines[i].slice(p + 1);
+        }
+        return m;
+    }
+    function decodePostings(str) {
+        var out = [];
+        if (!str) return out;
+        var parts = str.split(',');
+        for (var i = 0; i < parts.length; i++) {
+            var x = parts[i];
+            if (x.length < 2) continue;
+            out.push([parseInt(x.slice(0, -1), 36), x.charCodeAt(x.length - 1) - 48]);
+        }
+        return out;
+    }
+    // lists: one decoded posting list per query term. Words matching more terms rank first, then by weighted rarity.
+    function reverseSearch(lists, limit) {
+        var score = Object.create(null), count = Object.create(null), ids = [];
+        lists.forEach(function (pl) {
+            if (!pl.length) return;
+            var idf = 1 / Math.log(2 + pl.length);
+            pl.forEach(function (p) {
+                var id = p[0];
+                if (count[id] === undefined) { count[id] = 0; score[id] = 0; ids.push(id); }
+                count[id] += 1;
+                score[id] += (p[1] + 1) * idf;
+            });
+        });
+        ids.sort(function (a, b) { return (count[b] - count[a]) || (score[b] - score[a]) || (a - b); });
+        return ids.slice(0, limit || 40).map(function (id) { return { id: id, terms: count[id], score: score[id] }; });
+    }
+
     /* ---------- Index & search ---------- */
     // index text: one entry per line, "word" or "variant|canonical"; sorted by lowercase word.
     function parseIndex(txt) {
@@ -377,6 +455,12 @@
         editDistance: editDistance,
         chunkKey: chunkKey,
         searchForms: searchForms,
+        STOP: STOP,
+        stemToken: stemToken,
+        queryTerms: queryTerms,
+        parseRevFile: parseRevFile,
+        decodePostings: decodePostings,
+        reverseSearch: reverseSearch,
         verbForms: verbForms,
         conjugate: conjugate,
         shouldDouble: shouldDouble,

@@ -1,0 +1,13 @@
+warm	2p3
+wavelength	o1
+way	271
+weariness	2o3
+weary	2o3
+wher	2l3
+whit	1g3
+winter	2p3
+within	l3,203,213
+wood	d3,1w3
+work	b3,2v3,y1
+worn	283,1r3
+written	n3,b3,2v3

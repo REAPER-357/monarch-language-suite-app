@@ -7,7 +7,7 @@ Made by REAPER-357.
 
 | Tab | What it does |
 | --- | --- |
-| Dictionary | Words appear as you type. Wildcards (`c?t`, `un*able`), typo suggestions, and inflections (`ran` opens *run*). Definitions, examples, pronunciation, etymology, word of the day, favourites and history. |
+| Dictionary | Words appear as you type. **Browse by letter** (tap A–Z, jump to ca / ce / ch…), and **By meaning** search: describe a word ("a person who studies the stars") and it finds candidates. Wildcards (`c?t`, `un*able`), typo suggestions, and inflections (`ran` opens *run*). Definitions, examples, pronunciation, etymology, word of the day, favourites and history. |
 | Thesaurus | Synonyms, antonyms and related words, grouped by meaning. Tap any word to jump to it. |
 | Special Forms | Idioms, phrasal verbs, proverbs, similes, phrases, slang, abbreviations. |
 | Basics | Parts of speech, the 12 verb tenses, a verb conjugator, irregular verbs, spelling differences, plurals, comparing adjectives, articles, modals, commonly confused words, punctuation. |
@@ -39,9 +39,21 @@ python tools/build_data.py --oewn english-wordnet-2024.xml.gz --kaikki kaikki.or
 * `--sample` rebuilds the tiny test pack.
 * Use only one source if you like (`--oewn` alone or `--kaikki` alone).
 
-Check the result with `python tests/test_build.py` (uses small built-in fixtures) and `node tests/engine.test.js`.
+Check the result with `python3 tests/test_build.py`, `node tests/engine.test.js` and `node tests/reverse.test.js` (small built-in fixtures).
 The pipeline has been tested on small fixtures that follow the real file formats. It has not yet been run on the
 full downloads, so if the script stops with an error on your files, send me the message and I'll fix it.
+
+## Search by meaning
+
+The Dictionary tab has a **Words / By meaning** switch. Meaning search works offline from a small index (`data/rev/`,
+26 files) that `build_data.py` creates from the definitions, so **rebuild the data pack once** to get it. The build
+prints its size ("meaning-search index: ... MB"). It matches the words you type against definitions, so it finds
+words whose definitions are close to your description. It is not an AI search: plain, specific words work best.
+
+## Top margin
+
+The header sits 1 cm below the top of the screen so it clears the clock and battery. To change it, edit
+`--top-gap: 1cm;` at the top of `css/monarch.css`.
 
 ## Icons (your local packs)
 
@@ -64,13 +76,22 @@ Then open http://localhost:8000.
 
 ## GitHub Pages (PWA)
 
-1. Create a GitHub repository and upload this folder's contents (not `tools/`, `tests/`, `_src/` or `www/` if you want it lean; they are harmless).
-2. Settings, Pages, Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
-3. Open `https://<you>.github.io/<repo>/` on your phone and use the browser's "Install app" / "Add to Home screen".
-4. Open Settings in the app and tap **Download everything for offline use** once, on Wi-Fi.
+1. Run `python3 tools/make_www.py`. It builds a clean **`www/`** folder with exactly what the site needs.
+2. Upload the **contents of `www/`** to your GitHub repository (so `index.html` is at the top of the repo or of the folder Pages serves).
+3. Settings, Pages, Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
+4. Open `https://<you>.github.io/<repo>/` on your phone. After one reload, Chrome menu, **Install app**.
+5. Open Settings in the app and tap **Download everything for offline use** once, on Wi-Fi.
+
+These files must all open in a browser (a 404 on any of the first four is why Chrome says "This app cannot be installed"):
+`/<repo>/manifest.json`, `/<repo>/sw.js`, `/<repo>/icon.png` (512x512), `/<repo>/small-icon.png` (192x192), then
+`index.html`, `css/`, `js/`, `assets/`, `data/`.
+
+**Updates.** The app always asks the server for the newest version first: app files and the small data files are re-checked
+on every open, and again when you switch back to the app. A rebuilt data pack gets a new version number, so the old saved copy is
+dropped automatically (tap Download for offline again afterwards). Settings has **Check for updates and reload** if you want it now.
+GitHub Pages takes about a minute to publish after an upload.
 
 Notes: a repository should stay under about 1 GB and each file under 100 MB (the data is split into small files, so that is fine).
-After you upload a new data pack, the app asks you to reopen it once to pick up the update.
 
 ## Android APK (Capacitor)
 

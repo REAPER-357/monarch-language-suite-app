@@ -1,0 +1,12 @@
+tak	2g3
+tasteless	2y3
+theatrical	2l3
+thick	i3,2r3
+tim	2g3,y2,z2
+together	b2,2v2
+toward	1k1
+transmit	o3
+travel	2w3,2x3,2f3,1d3,1v3,223,2q3
+treat	143
+two	283
+typically	g3,h3

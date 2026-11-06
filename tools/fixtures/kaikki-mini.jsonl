@@ -7,3 +7,5 @@
 {"word": "toque", "lang_code": "en", "pos": "noun", "sounds": [{"ipa": "/tuːk/"}], "senses": [{"glosses": ["A warm knitted winter hat, especially in Canada."], "examples": [{"text": "Wear a toque, it's cold."}]}]}
 {"word": "Paris", "lang_code": "en", "pos": "name", "senses": [{"glosses": ["The capital of France."]}]}
 {"word": "bonjour", "lang_code": "fr", "lang": "French", "pos": "intj", "senses": [{"glosses": ["hello"]}]}
+{"word": "kick the bucket", "lang_code": "en", "pos": "verb", "senses": [{"glosses": ["To die."], "tags": ["idiomatic", "slang"], "examples": [{"text": "The old car finally kicked the bucket."}]}]}
+{"word": "freely", "lang_code": "en", "pos": "adv", "senses": [{"glosses": ["Without restriction."], "tags": ["idiomatic"]}]}

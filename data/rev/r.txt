@@ -1,0 +1,17 @@
+radiation	1t3,2t3,2u3
+rais	t3
+red	2c3,2d3
+reflect	o2
+regard	1y3
+region	l3,203,213
+repeat	123
+requirement	1b3
+resembl	2c3,2d3,93,a3
+restrain	t1
+result	o3
+retractil	162,172
+retriev	2e3
+road	t2
+roar	i2,2r2
+roundhead	163,173
+run	2f3

@@ -55,6 +55,11 @@
                        placeholder="Type a word… (use ? and * as wildcards)" aria-label="Search the dictionary">
                 <button class="clear" id="dictClear" aria-label="Clear search" hidden><span class="ic" data-ic="x"></span></button>
             </label>
+            <div class="seg" id="dictModes" role="tablist" aria-label="Search by">
+                <button class="active" role="tab" data-act="dictmode" data-mode="word">Words</button>
+                <button role="tab" data-act="dictmode" data-mode="meaning">By meaning</button>
+            </div>
+            <p class="hint" id="dictModeHint" hidden>Describe what the word means, for example <b>a person who studies the stars</b> or <b>fear of heights</b>.</p>
             <div id="dictHome" class="stack"></div>
             <div id="dictResults" class="list" hidden></div>
         </section>
@@ -148,6 +153,7 @@
                 <p class="hint" id="offlineStatus"></p>
                 <div class="progress" id="offlineBar" hidden><div></div></div>
                 <button class="btn accent-bg" id="btnOffline"><span class="ic" data-ic="download"></span><span>Download everything for offline use</span></button>
+                <button class="btn" id="btnUpdate"><span class="ic" data-ic="refresh-cw"></span><span>Check for updates and reload</span></button>
                 <button class="btn" id="btnInstall" hidden><span class="ic" data-ic="download"></span><span>Install app</span></button>
             </div>
 

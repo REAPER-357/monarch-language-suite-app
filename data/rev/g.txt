@@ -1,0 +1,5 @@
+gam	2e3
+garment	283
+genus	y3,z3
+giv	p3,o1
+great	1y1

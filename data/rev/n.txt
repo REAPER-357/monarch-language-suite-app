@@ -1,0 +1,4 @@
+near	233
+negativ	43
+nonretractil	g3,h3
+number	83,1s3,1u3,2h3

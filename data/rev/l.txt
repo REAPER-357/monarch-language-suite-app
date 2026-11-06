@@ -1,0 +1,17 @@
+larg	2e3
+larger	l3,203,213
+lif	2y2
+light	o3
+lightness	1g3
+lik	1y1
+limit	1u3,2h3
+liquid	193,2y3
+list	j3
+lith	163,173
+liv	03,103,113,1i3,1m3,233,1p3
+locat	233
+location	1d3,1v3,223,2q3
+long	2g3,g2,h2
+loon	1x2
+loos	283
+lucky	1j1

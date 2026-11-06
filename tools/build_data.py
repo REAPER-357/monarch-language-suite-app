@@ -383,6 +383,9 @@ def main():
     meta = packlib.write_pack(os.path.abspath(opts.out), entries, clean, sources=sources, label=label)
     log('Done in %.1fs: %d words, %d index lines, %.1f MB in %d files' % (
         time.time() - t0, meta['words'], meta['indexLines'], meta['totalBytes'] / 1048576.0, len(meta['files'])))
+    rv = meta.get('reverse') or {}
+    rev_bytes = sum(f['bytes'] for f in meta['files'] if f['path'].startswith('rev/'))
+    log('  meaning-search index: %d stems, %d links, %.1f MB' % (rv.get('tokens', 0), rv.get('postings', 0), rev_bytes / 1048576.0))
 
 
 if __name__ == '__main__':

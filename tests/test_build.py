@@ -61,7 +61,9 @@ try:
     check("non-English skipped", entry("bonjour") is None)
     check("form-of senses skipped", entry("colors") is None)
 
-    check("idiom captured", [i["p"] for i in forms["idiom"]] == ["break the ice"] and forms["idiom"][0]["x"])
+    check("idiom captured", sorted(i["p"] for i in forms["idiom"]) == ["break the ice", "kick the bucket"] and forms["idiom"][0]["x"], [i["p"] for i in forms["idiom"]])
+    check("single word with idiomatic sense stays a normal word", entry("freely") is not None)
+    check("idiomatic multi-word beats slang tag", entry("kick the bucket") is None)
     check("phrasal verb captured", [i["p"] for i in forms["phrasal"]] == ["give up"])
     check("proverb captured", len(forms["proverb"]) == 1 and forms["proverb"][0]["p"].startswith("A stitch"))
     check("idioms are not also dictionary entries", entry("break the ice") is None)

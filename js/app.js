@@ -36,6 +36,7 @@
         hist: store.get('mn_hist', []),
         formType: store.get('mn_formtype', 'idiom'),
         conjMode: 'affirm',
+        dictMode: 'word',
         tab: 'dictionary'
     };
     if (DIALECTS.indexOf(S.dialect) < 0) S.dialect = 'ca';
@@ -78,11 +79,18 @@
     function render(container, html) { container.innerHTML = html; hydrate(container); }
 
     /* ================= data ================= */
+    // Word data is requested as path?v=<data version> so a rebuilt pack is never served from an old saved copy.
+    var VERSIONED = /^(dict|forms|rev)\//, DATA_CACHE = 'monarch-data-v2';
+    function dataUrl(path) {
+        if (VERSIONED.test(path)) return DATA + path + (meta && meta.version ? '?v=' + encodeURIComponent(meta.version) : '');
+        return DATA + path;
+    }
+    function dataFetch(path) { return fetch(dataUrl(path), VERSIONED.test(path) ? undefined : { cache: 'no-cache' }); }
     function getJSON(path) {
-        return fetch(DATA + path).then(function (r) { if (!r.ok) throw new Error(path + ' (' + r.status + ')'); return r.json(); });
+        return dataFetch(path).then(function (r) { if (!r.ok) throw new Error(path + ' (' + r.status + ')'); return r.json(); });
     }
     function getText(path) {
-        return fetch(DATA + path).then(function (r) { if (!r.ok) throw new Error(path + ' (' + r.status + ')'); return r.text(); });
+        return dataFetch(path).then(function (r) { if (!r.ok) throw new Error(path + ' (' + r.status + ')'); return r.text(); });
     }
     function getChunk(ck) {
         if (!chunks.has(ck)) {
@@ -278,6 +286,7 @@
         var home = $(m.home), results = $(m.results);
         if (!q) { home.hidden = false; results.hidden = true; return; }
         home.hidden = true; results.hidden = false;
+        if (mode === 'dict' && S.dictMode === 'meaning') { runMeaningSoon(q); return; }
         var res = E.search(index, q, { spelling: sp, dialect: S.dialect, limit: 80 });
         if (res.length) {
             // typed an inflected form (ran, mice, walked)? show its base word first
@@ -325,7 +334,7 @@
             if (e.key !== 'Enter') return;
             e.preventDefault();
             var first = $(m.results + ' [data-act="word"]');
-            if (first) first.click(); else if (input.value.trim()) openWord(input.value.trim(), mode, true);
+            if (first) first.click(); else if (input.value.trim() && !(mode === 'dict' && S.dictMode === 'meaning')) openWord(input.value.trim(), mode, true);
             input.blur();
         });
         $(m.clear).addEventListener('click', function () { input.value = ''; runSearch(mode); input.focus(); });
@@ -474,6 +483,7 @@
         render(home,
             '<div class="panel wotd" id="wotdCard"><div class="label">Word of the day</div><div class="muted">Loading…</div></div>' +
             '<div class="chips"><button class="btn" data-act="random" data-mode="dict">' + ic('shuffle') + '<span>Random word</span></button></div>' +
+            azPanel() +
             homeLists('dict') +
             '<p class="hint">Tip: use <b>?</b> for one unknown letter and <b>*</b> for several, like <b>c?t</b> or <b>un*able</b>. You can type any spelling: colour or color.</p>');
         pickWordOfDay().then(function (w) {
@@ -492,6 +502,123 @@
             '<div class="empty">' + ic('arrow-right-left', 'ic-xl') + '<p>Type a word to find synonyms and antonyms.</p></div>' +
             '<div class="chips"><button class="btn" data-act="random" data-mode="thes">' + ic('shuffle') + '<span>Random word</span></button></div>' +
             homeLists('thes'));
+    }
+
+
+    /* ================= browse by letter ================= */
+    var LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var bw = null, bwObs = null;   // state of the open "words starting with…" page
+    function azPanel() {
+        return '<div class="panel"><div class="label">Browse by letter</div><div class="az-grid">' +
+            LETTERS.map(function (l) { return '<button data-act="letter" data-letter="' + l + '" aria-label="Words starting with ' + l.toUpperCase() + '">' + l.toUpperCase() + '</button>'; }).join('') +
+            '</div></div>';
+    }
+    function openLetter(letter, replace) {
+        var frame = { title: 'Words starting with ' + letter.toUpperCase(), build: function () { return browsePage(letter); } };
+        if (replace && detailStack.length) { detailStack[detailStack.length - 1] = frame; showDetail(true); }
+        else openDetail(frame);
+    }
+    function browsePage(letter) {
+        var words = E.search(index, letter, { spelling: sp, dialect: S.dialect, limit: 200000 });
+        var subs = [], seenSub = {};
+        words.forEach(function (r, i) {
+            var p = r.w.toLowerCase().slice(0, 2);
+            if (p.length === 2 && !seenSub[p]) { seenSub[p] = 1; subs.push([p, i]); }
+        });
+        bw = { letter: letter, words: words, shown: 0 };
+        var html = '<div class="bw-strip" id="bwStrip">' + LETTERS.map(function (l) {
+                return '<button data-act="letterswap" data-letter="' + l + '"' + (l === letter ? ' class="active"' : '') + '>' + l.toUpperCase() + '</button>';
+            }).join('') + '</div>' +
+            '<div class="row-between" style="margin-bottom:.5rem"><h2 style="font-size:1.4rem;font-weight:800">' + letter.toUpperCase() + '</h2>' +
+            '<span class="muted">' + words.length.toLocaleString() + ' words</span></div>' +
+            (subs.length > 1 ? '<div class="bw-sub">' + subs.map(function (x) {
+                return '<button data-act="subprefix" data-idx="' + x[1] + '">' + esc(x[0]) + '</button>';
+            }).join('') + '</div>' : '') +
+            '<div id="bwList" class="list"></div><div id="bwMore" style="height:1px"></div>' +
+            (words.length ? '' : '<div class="empty"><p>No words start with “' + esc(letter.toUpperCase()) + '”.</p></div>');
+        return {
+            html: html,
+            after: function () {
+                bwRender(300); bwObserve();
+                var strip = $('#bwStrip'), a = strip && $('#bwStrip .active');
+                if (a) strip.scrollLeft = a.offsetLeft - strip.clientWidth / 2 + a.offsetWidth / 2;
+            }
+        };
+    }
+    function bwRender(n) {
+        var list = $('#bwList');
+        if (!list || !bw || bw.shown >= bw.words.length) return;
+        var end = Math.min(bw.words.length, bw.shown + n), html = '';
+        for (var i = bw.shown; i < end; i++) {
+            var r = bw.words[i];
+            html += '<button id="bw' + i + '" class="row" data-act="word" data-key="' + esc(r.key) + '" data-mode="dict"><span class="title">' + esc(r.w) + '</span></button>';
+        }
+        list.insertAdjacentHTML('beforeend', html);
+        bw.shown = end;
+    }
+    function bwObserve() {
+        if (bwObs) { bwObs.disconnect(); bwObs = null; }
+        var more = $('#bwMore');
+        if (!more || !bw) return;
+        if (!('IntersectionObserver' in window)) { bwRender(1e6); return; }
+        function fill() {
+            var guard = 0;
+            while (bw && bw.shown < bw.words.length && more.getBoundingClientRect().top < window.innerHeight + 1500 && guard++ < 40) bwRender(300);
+        }
+        bwObs = new IntersectionObserver(function (ents) { if (ents[0].isIntersecting) fill(); }, { rootMargin: '1500px' });
+        bwObs.observe(more);
+    }
+    function bwJump(i) {
+        if (!bw || isNaN(i)) return;
+        if (i + 60 > bw.shown) bwRender(i + 60 - bw.shown);
+        var el = $('#bw' + i);
+        if (el) el.scrollIntoView({ block: 'start' });
+    }
+
+    /* ================= search by meaning ================= */
+    var revFiles = {}, meaningSeq = 0;
+    function getRev(letter) {
+        if (!revFiles[letter]) revFiles[letter] = getText('rev/' + letter + '.txt').then(E.parseRevFile).catch(function () { delete revFiles[letter]; return {}; });
+        return revFiles[letter];
+    }
+    function emptyNote(text) { return '<div class="empty">' + ic('search', 'ic-xl') + '<p>' + text + '</p></div>'; }
+    var runMeaningSoon = debounce(function (q) { runMeaning(q); }, 220);
+    function runMeaning(q) {
+        var results = $('#dictResults'), seq = ++meaningSeq;
+        if (!meta || !meta.reverse) { render(results, emptyNote('Search by meaning needs a newer data pack. Rebuild it with tools/build_data.py.')); return; }
+        var terms = E.queryTerms(q, sp);
+        if (!terms.length) { render(results, emptyNote('Keep typing: describe the word with a few meaningful words.')); return; }
+        var letters = [], seenL = {};
+        terms.forEach(function (t) { if (!seenL[t[0]]) { seenL[t[0]] = 1; letters.push(t[0]); } });
+        Promise.all(letters.map(getRev)).then(function (files) {
+            if (seq !== meaningSeq) return null;
+            var byL = {};
+            letters.forEach(function (l, i) { byL[l] = files[i] || {}; });
+            var hits = E.reverseSearch(terms.map(function (t) { return E.decodePostings(byL[t[0]][t]); }), 30);
+            if (!hits.length) { render(results, emptyNote('No words found for “' + esc(q) + '”. Try different or fewer words.')); return null; }
+            return Promise.all(hits.map(function (h) {
+                var w = index.words[h.id];
+                if (w === undefined) return null;
+                var key = (index.canon[h.id] || w).toLowerCase();
+                return getEntry(key).then(function (ent) { return ent ? { key: key, ent: ent, n: h.terms } : null; });
+            })).then(function (rows) {
+                if (seq !== meaningSeq) return;
+                rows = rows.filter(Boolean);
+                var partial = terms.length > 1 && rows.length && rows[0].n < terms.length;
+                render(results, '<div class="label">' + (partial ? 'Closest matches' : 'Possible words') + '</div>' + rows.map(function (r) {
+                    var s = r.ent.s[0] || {};
+                    return '<button class="row" data-act="word" data-key="' + esc(r.key) + '" data-mode="dict"><span class="rowtext"><span class="title">' + esc(D(r.ent.w)) + '</span>' +
+                        '<span class="snip"><i>' + esc(POS_NAME[s.p] || s.p || '') + '</i> · ' + esc(T(s.d || '')) + '</span></span><span class="muted">' + ic('chevron-right') + '</span></button>';
+                }).join(''));
+            });
+        }).catch(function () { if (seq === meaningSeq) render(results, emptyNote('Something went wrong with that search.')); });
+    }
+    function applyDictMode() {
+        var meaning = S.dictMode === 'meaning', inp = $('#dictInput');
+        $$('#dictModes button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-mode') === S.dictMode); });
+        inp.placeholder = meaning ? 'Describe it… e.g. a fear of heights' : 'Type a word… (use ? and * as wildcards)';
+        inp.setAttribute('aria-label', meaning ? 'Describe the word you are looking for' : 'Search the dictionary');
+        $('#dictModeHint').hidden = !meaning;
     }
 
     /* ================= Special forms ================= */
@@ -744,10 +871,10 @@
         var urls = CORE_FILES.slice();
         ICON_NAMES.forEach(function (n) { urls.push('assets/icons/' + n + '.svg'); });
         urls.push(DATA + 'meta.json');
-        meta.files.forEach(function (f) { urls.push(DATA + f.path); });
+        meta.files.forEach(function (f) { urls.push(dataUrl(f.path)); });
         var total = urls.length, done = 0, failed = 0, i = 0;
         btn.disabled = true; bar.hidden = false; fill.style.width = '0';
-        caches.open('monarch-data-v1').then(function (cache) {
+        caches.open(DATA_CACHE).then(function (cache) {
             function worker() {
                 if (i >= urls.length) return Promise.resolve();
                 var url = urls[i++];
@@ -763,6 +890,20 @@
         }).catch(function () { btn.disabled = false; bar.hidden = true; toast('Download failed'); updateOfflineStatus(); });
     }
 
+    function checkUpdates() {
+        var btn = $('#btnUpdate');
+        btn.disabled = true; toast('Checking for updates…');
+        var reg = ('serviceWorker' in navigator) ? navigator.serviceWorker.getRegistration() : Promise.resolve(null);
+        reg.then(function (r) { return r ? r.update().catch(function () { /* offline */ }) : null; })
+            .then(function () { return fetch(DATA + 'meta.json', { cache: 'no-store' }).then(function (r) { return r.json(); }); })
+            .then(function (m) {
+                if (meta && m.version !== meta.version && 'caches' in window) { caches.delete(DATA_CACHE); store.set('mn_offline_v', null); }
+                toast('Reloading with the latest version…');
+                setTimeout(function () { location.reload(); }, 600);
+            })
+            .catch(function () { btn.disabled = false; toast('You appear to be offline. Nothing to update.'); });
+    }
+
     /* ================= events ================= */
     document.addEventListener('click', function (e) {
         var t = e.target.closest('[data-act]');
@@ -774,6 +915,10 @@
                 else openWord(t.getAttribute('data-key'), t.getAttribute('data-mode'));
                 break;
             case 'random': randomWord(t.getAttribute('data-mode')); break;
+            case 'dictmode': S.dictMode = t.getAttribute('data-mode') === 'meaning' ? 'meaning' : 'word'; applyDictMode(); runSearch('dict'); $('#dictInput').focus(); break;
+            case 'letter': openLetter(t.getAttribute('data-letter')); break;
+            case 'letterswap': openLetter(t.getAttribute('data-letter'), true); break;
+            case 'subprefix': bwJump(parseInt(t.getAttribute('data-idx'), 10)); break;
             case 'fav': toggleFav(t.getAttribute('data-key')); refreshDetail(); break;
             case 'speak': speak(t.getAttribute('data-text')); break;
             case 'copy': copyText(t.getAttribute('data-text')); break;
@@ -809,6 +954,7 @@
         $('#btnClearHistory').addEventListener('click', function () { S.hist = []; store.set('mn_hist', S.hist); updateDataCounts(); renderDictHome(); renderThesHome(); toast('Recent words cleared'); });
         $('#btnClearFavs').addEventListener('click', function () { S.favs = []; store.set('mn_favs', S.favs); updateDataCounts(); renderDictHome(); renderThesHome(); refreshDetail(); toast('Favourites cleared'); });
         $('#btnOffline').addEventListener('click', downloadOffline);
+        $('#btnUpdate').addEventListener('click', checkUpdates);
 
         var deferredPrompt = null;
         window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredPrompt = e; $('#btnInstall').hidden = false; });
@@ -827,8 +973,13 @@
         console.error(err);
     }
 
+    function setHeaderHeight() {
+        var h = $('.app-header');
+        if (h) document.documentElement.style.setProperty('--hdr-h', h.offsetHeight + 'px');
+    }
     function init() {
         applyTheme(); applyAccent(); applyFontSize(); applyDialectUi();
+        setHeaderHeight(); window.addEventListener('resize', setHeaderHeight); window.addEventListener('load', setHeaderHeight);
         wireUi();
         renderBasicsMenu();
         hydrate(document);
@@ -839,6 +990,11 @@
             index = E.parseIndex(r[0]);
             sp = E.createSpelling(r[1]);
             meta = r[2];
+            try {
+                var prevVer = store.get('mn_data_ver', null);
+                if (prevVer && prevVer !== meta.version && 'caches' in window) { caches.delete(DATA_CACHE); store.set('mn_offline_v', null); }
+                store.set('mn_data_ver', meta.version);
+            } catch (e) { /* ignore */ }
             updatePackInfo();
             renderDictHome(); renderThesHome();
             getBasics().catch(function () { /* lessons will show an error toast when opened */ });
@@ -847,7 +1003,8 @@
 
         if ('serviceWorker' in navigator && !isNative() && /^https?:$/.test(location.protocol)) {
             window.addEventListener('load', function () {
-                navigator.serviceWorker.register('sw.js').then(function (reg) {
+                navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) {
+                    document.addEventListener('visibilitychange', function () { if (!document.hidden) reg.update().catch(function () { /* offline */ }); });
                     reg.addEventListener('updatefound', function () {
                         var nw = reg.installing;
                         if (nw) nw.addEventListener('statechange', function () {

@@ -1,0 +1,16 @@
+edg	t3
+effort	273
+electromagnetic	1t3,2t3,2u3
+emit	o3
+emotion	1y3,1k3,1l3
+emotional	53,1f3,1z3
+enjoy	1j3
+entity	33,293
+essential	23,c3,x3,2k3,2y3
+etc	253
+event	2n3,183
+excit	53,1f3,1z3
+expectation	1b3
+experienc	2s3,2n1
+extent	82,1s2,1u2,2h2
+extrem	1g3

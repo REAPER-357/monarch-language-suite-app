@@ -1,0 +1,15 @@
+mad	1c3,n1
+magnitud	83,1s3,1u3,2h3
+mammal	i3,2r3,g3,h3,163,173
+man	y3,z3
+manner	63,s3
+many	162,172
+mark	1j3,n1
+medium	2e3
+meet	1b3
+member	y3,z3
+metaphorically	1d3,1v3,223,2q3
+money	n3
+motion	2l3
+mov	193,2g3,133,2b3,2i3,2j3,1d3,1v3,223,2q3
+muzzl	g2,h2

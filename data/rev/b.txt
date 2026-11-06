@@ -1,0 +1,17 @@
+bank	n3
+bear	1x3
+becom	2o3,1d1
+belong	33,293
+below	1u3,2h3
+black	1g3
+blood	2c2,2d2
+blu	93,a3
+body	163,173
+bound	b2,2v2
+boundary	t3
+bre	2e3
+break	23,c3,x3,2k3
+build	2l3
+built	d3,1w3
+burn	183
+business	253

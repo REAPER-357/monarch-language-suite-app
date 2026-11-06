@@ -1,0 +1,16 @@
+daytim	92,a2
+defend	v3,w3
+delight	53,1f3,1z3
+derogatory	y1
+descriptiv	j3
+desirabl	1e3
+destructiv	183
+detail	j3
+difficult	1k2,1l2
+direct	253
+dislik	1k3,1l3
+dog	2e3
+dollar	1x3
+domesticat	y3,z3
+down	23,c3,x3,2k3
+dwell	1p3

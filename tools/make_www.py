@@ -3,14 +3,15 @@
 
   python tools/make_www.py
 
-Leaves out the files the APK does not need: the service worker (the APK already
-contains every data file), tests, build tools and caches.
+The result is the folder to publish on GitHub Pages (the PWA needs sw.js and manifest.json)
+and the folder the Android build wraps. In the APK the service worker is not used, because the
+app skips it when running inside Capacitor. Tests, build tools and caches are left out.
 """
 import os, shutil, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "www")
-FILES = ["index.html", "manifest.json", "icon.png", "small-icon.png"]
+FILES = ["index.html", "manifest.json", "sw.js", "icon.png", "small-icon.png"]
 DIRS = ["css", "js", "assets", "data"]
 
 

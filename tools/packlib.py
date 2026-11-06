@@ -136,6 +136,103 @@ def derive_triples(lexicon):
     return {t for t in triples if not (t[0] == t[1] == t[2])}
 
 
+
+# ------------------------------------------------------- reverse lookup (by meaning) ----
+# The app's "By meaning" search uses a small inverted index: word-stem -> headwords whose
+# definitions contain it. js/engine.js has a matching tokenizer and stemmer (tests check both agree).
+STOP = frozenset(("a an the of to in for or and with who whom whose which that this these those is are was were be been being "
+                  "by on as at from it its not no into than then there their they them he she his her we you your but if so such "
+                  "one ones something someone somebody anything thing things used use using usually often especially esp "
+                  "having have has had do does done can may might will would very more most any some each other another "
+                  "informal slang archaic obsolete dated rare uncommon historical figuratively figurative transitive intransitive "
+                  "also about between during over under up out off through").split())
+_TOK = re.compile(r"[a-z]+")
+_UNDOUBLE = "bgmnprt"
+
+
+def _undouble(t):
+    if len(t) >= 3 and t[-1] == t[-2] and t[-1] in _UNDOUBLE:
+        return t[:-1]
+    return t
+
+
+def stem_token(t):
+    n = len(t)
+    if n <= 3:
+        return t
+    if (t.endswith("ies") or t.endswith("ied")) and n > 4:
+        return t[:-3] + "y"
+    if t.endswith("ing") and n > 5:
+        t = _undouble(t[:-3])
+    elif t.endswith("ed") and n > 4:
+        t = _undouble(t[:-2])
+    elif t.endswith("es") and n > 4 and t[:-2].endswith(("s", "x", "z", "ch", "sh")):
+        t = t[:-2]
+    elif t.endswith("s") and not t.endswith(("ss", "us", "is")):
+        t = t[:-1]
+    if len(t) > 3 and t.endswith("e"):
+        t = t[:-1]
+    return t
+
+
+def rev_terms(text, canon=None):
+    """Stemmed search terms of a piece of text, in order (duplicates kept)."""
+    out = []
+    for t in _TOK.findall(text.lower()):
+        if len(t) < 3 or t in STOP:
+            continue
+        if canon:
+            t = canon(t)
+        out.append(stem_token(t))
+    return out
+
+
+_B36 = "0123456789abcdefghijklmnopqrstuvwxyz"
+
+
+def _b36(n):
+    if n == 0:
+        return "0"
+    s = ""
+    while n:
+        n, r = divmod(n, 36)
+        s = _B36[r] + s
+    return s
+
+
+def write_reverse_index(out_dir, entries, pos, canon, cap=300):
+    """Writes rev/<first letter>.txt. Line: stem TAB id+weight,id+weight,...
+    id = line number of the headword in index.txt (base 36); weight 0-3 is the last character."""
+    postings = {}
+    for ent in entries.values():
+        idx = pos.get(ent["w"])
+        senses = ent.get("s") or []
+        if idx is None or not senses:
+            continue
+        best = {}
+        for si, s in enumerate(senses[:3]):
+            for ti, t in enumerate(rev_terms(s["d"], canon)):
+                w = (3 if ti < 6 else 2) if si == 0 else 1
+                if best.get(t, 0) < w:
+                    best[t] = w
+        short = min(len(senses[0]["d"]), 1023)
+        for t, w in best.items():
+            postings.setdefault(t, []).append(((3 - w) << 40) | (short << 20) | idx)
+    by_letter, total = {}, 0
+    for t, lst in postings.items():
+        lst.sort()
+        lst = lst[:cap]
+        total += len(lst)
+        by_letter.setdefault(t[0], []).append(t + "\t" + ",".join(_b36(v & 0xFFFFF) + str(3 - (v >> 40)) for v in lst))
+    for c, lines in by_letter.items():
+        lines.sort()
+        path = os.path.join(out_dir, "rev", c + ".txt")
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+    return {"tokens": len(postings), "postings": total, "cap": cap}
+
+
 # ------------------------------------------------------------------ writer ----
 def chunk_key(key):
     k = re.sub(r"[^a-z]", "_", key.lower())
@@ -198,6 +295,10 @@ def write_pack(out_dir, entries, forms, sources=None, label="full"):
     with open(os.path.join(out_dir, "index.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(index) + "\n")
 
+    # "By meaning" index (needs the final index positions, so it is written here).
+    pos = {line: i for i, line in enumerate(index)}
+    reverse = write_reverse_index(out_dir, entries, pos, canon)
+
     # Dictionary chunks.
     chunks = {}
     for key, ent in entries.items():
@@ -229,12 +330,13 @@ def write_pack(out_dir, entries, forms, sources=None, label="full"):
             files.append({"path": os.path.relpath(p, out_dir).replace(os.sep, "/"), "bytes": os.path.getsize(p)})
     files.sort(key=lambda x: x["path"])
     meta = {
-        "version": time.strftime("%Y.%m.%d"),
+        "version": time.strftime("%Y.%m.%d.%H%M"),
         "pack": label,
         "words": len(entries),
         "indexLines": len(index),
         "forms": form_counts,
         "spellingGroups": len(triples),
+        "reverse": reverse,
         "totalBytes": sum(x["bytes"] for x in files),
         "sources": sources or [],
         "files": files,
